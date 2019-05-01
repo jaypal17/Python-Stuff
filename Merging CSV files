@@ -1,0 +1,17 @@
+# import the pandas library #
+import pandas as pd
+# import of Misc operating system interface #
+import os
+# import of Unix style pathname and pattern expansion $
+import glob
+
+# change directory to file that has csv files I want to merge #
+os.chdir("C:/Users/Justin/PycharmProjects/Projects/mergeproject")
+extension = 'csv'
+
+# save all files and format to extension that we stated above #
+merged = [i for i in glob.glob('*.{}'.format(extension))]
+
+# concatenates all files and exports to a csv file with the name combined #
+combined = pd.concat([pd.read_csv(f) for f in merged])
+combined.to_csv("combined.csv", index=True, encoding='utf-8-sig')
